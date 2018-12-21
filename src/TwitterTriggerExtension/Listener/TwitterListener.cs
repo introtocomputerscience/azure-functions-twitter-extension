@@ -34,12 +34,18 @@ namespace TwitterTriggerExtension
             var accessSecret = Environment.GetEnvironmentVariable("TwitterAccessSecret");
 
             var credentials = new TwitterCredentials(consumerKey, consumerSecret, accessKey, accessSecret);
-            _filteredStream = Stream.CreateFilteredStream(credentials);
-            _filteredStream.AddTrack(_attribute.Filter);
+            Auth.SetCredentials(credentials);
+
+            _filteredStream = Stream.CreateFilteredStream();
+
+            if (!string.IsNullOrEmpty(_attribute.Filter))
+            {
+                _filteredStream.AddTrack(_attribute.Filter);
+            }
 
             if (!string.IsNullOrWhiteSpace(_attribute.User))
             {
-                _filteredStream.AddFollow(new UserIdentifier(_attribute.User));
+                _filteredStream.AddFollow(User.GetUserFromScreenName(_attribute.User));
             }
 
             _filteredStream.MatchingTweetReceived += async (obj, tweetEvent) =>

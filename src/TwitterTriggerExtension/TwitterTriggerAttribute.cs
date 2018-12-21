@@ -21,7 +21,7 @@ namespace TwitterTriggerExtension
         public string Filter { get; private set; }
         public string User { get; private set; }
 
-        public TwitterTriggerAttribute(string filter, string user = null)
+        public TwitterTriggerAttribute(string filter = null, string user = null)
         {
             Filter = filter;
             User = user;

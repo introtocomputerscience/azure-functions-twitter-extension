@@ -18,7 +18,6 @@ namespace TwitterTriggerExtension
         private readonly ParameterInfo _parameter;
         private readonly ILogger _logger;
         private readonly TwitterTriggerAttribute _attribute;
-        private readonly BindingDataProvider _bindingDataProvider;
         private readonly IReadOnlyDictionary<string, Type> _bindingContract;
 
         public TwitterTriggerBinding(ParameterInfo parameter, ILogger logger)
@@ -26,7 +25,6 @@ namespace TwitterTriggerExtension
             _parameter = parameter;
             _logger = logger;
             _attribute = parameter.GetCustomAttribute<TwitterTriggerAttribute>(inherit: false);
-            _bindingDataProvider = BindingDataProvider.FromTemplate(_attribute.Filter);
             _bindingContract = CreateBindingContract();
         }
         public IReadOnlyDictionary<string, Type> BindingDataContract => _bindingContract;
@@ -36,15 +34,6 @@ namespace TwitterTriggerExtension
         {
             Dictionary<string, Type> contract = new Dictionary<string, Type>(StringComparer.OrdinalIgnoreCase);
             contract.Add("TwitterTrigger", typeof(MatchedTweetReceivedEventArgs));
-
-            if (_bindingDataProvider.Contract != null)
-            {
-                foreach (KeyValuePair<string, Type> item in _bindingDataProvider.Contract)
-                {
-                    contract[item.Key] = item.Value;
-                }
-            }
-
             return contract;
         }
 
@@ -71,15 +60,6 @@ namespace TwitterTriggerExtension
 
             Dictionary<string, object> bindingData = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase);
             bindingData.Add("TwitterTrigger", value);
-
-            IReadOnlyDictionary<string, object> bindingDataFromFilter = _bindingDataProvider.GetBindingData(value.Tweet.FullText);
-            if (bindingDataFromFilter != null)
-            {
-                foreach (KeyValuePair<string, object> item in bindingDataFromFilter)
-                {
-                    bindingData[item.Key] = item.Value;
-                }
-            }
 
             return bindingData;
         }

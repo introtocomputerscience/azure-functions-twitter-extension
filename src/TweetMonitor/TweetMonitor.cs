@@ -16,7 +16,7 @@ namespace TweetMonitor
     public static class TweetMonitor
     {
         [FunctionName("TweetMonitor")]
-        public static async Task Run([TwitterTrigger("#tgif")]MatchedTweetReceivedEventArgs tweetEvent, ILogger log)
+        public static async Task Run([TwitterTrigger(filter: "#azurefunctions")]MatchedTweetReceivedEventArgs tweetEvent, ILogger log)
         {
             log.LogInformation($"\n@{tweetEvent.Tweet.CreatedBy.ScreenName}[{tweetEvent.Tweet.CreatedBy.Name}]\n" +
                 $"Tweeted: {tweetEvent.Tweet.FullText}\n" +
