@@ -69,7 +69,6 @@ namespace TwitterTriggerExtension
             if (!string.IsNullOrEmpty(tweetInfo))
             {
                 //TODO: Figure this out: https://github.com/Azure/azure-webjobs-sdk-extensions/blob/master/src/WebJobs.Extensions/Extensions/Files/Bindings/FileTriggerBinding.cs
-                var w = "a";
             }
 
             return null;

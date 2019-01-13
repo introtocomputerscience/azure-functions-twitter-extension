@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2013/05/nuspec.xsd">
+  <metadata>
+    <id>MonkeyShell.Microsoft.Azure.WebJobs.Extensions.Twitter</id>
+    <version>1.0.0</version>
+    <authors>CJ van der Smissen</authors>
+    <owners>CJ van der Smissen</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <licenseUrl>https://github.com/introtocomputerscience/azure-functions-twitter-extension/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/introtocomputerscience/azure-functions-twitter-extension</projectUrl>
+    <description>This extension provides the ability to activate a webjob based on twitter events</description>
+    <releaseNotes>
+      Initial release
+    </releaseNotes>
+    <copyright>2019</copyright>
+    <repository type="GitHub" url="https://github.com/introtocomputerscience/azure-functions-twitter-extension" />
+  </metadata>
+  <files>
+	<file src="TwitterTriggerExtension\bin\Release\netstandard2.0\TwitterTriggerExtension.dll" target="lib/netstandard2.0" />
+  </files>
+</package>

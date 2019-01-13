@@ -2,6 +2,18 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageId></PackageId>
+    <Authors>CJ van der Smissen</Authors>
+    <Company>CJ van der Smissen</Company>
+    <Product>Twitter Trigger Extension</Product>
+    <Description>This extension provides the ability to activate a webjob based on twitter events</Description>
+    <Copyright>2018</Copyright>
+    <PackageLicenseUrl></PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/introtocomputerscience/azure-functions-twitter-extension</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/introtocomputerscience/azure-functions-twitter-extension</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageReleaseNotes>Initial release</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
