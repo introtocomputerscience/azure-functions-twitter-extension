@@ -33,8 +33,6 @@ namespace TwitterTriggerExtension
             var accessKey = Environment.GetEnvironmentVariable("TwitterAccessKey");
             var accessSecret = Environment.GetEnvironmentVariable("TwitterAccessSecret");
 
-            // var credentials = new TwitterCredentials(consumerKey, consumerSecret, accessKey, accessSecret);
-            // Auth.SetCredentials(credentials);
             var userClient = new TwitterClient(consumerKey, consumerSecret, accessKey, accessSecret);
 
             _filteredStream = userClient.Streams.CreateFilteredStream();
@@ -46,7 +44,6 @@ namespace TwitterTriggerExtension
 
             if (!string.IsNullOrWhiteSpace(_attribute.User))
             {
-                // _filteredStream.AddFollow(User.GetUserFromScreenName(_attribute.User));
                 var user = await userClient.Users.GetUserAsync(_attribute.User);
                 _filteredStream.AddFollow(user);
             }
@@ -62,17 +59,14 @@ namespace TwitterTriggerExtension
 
             _filteredStream.DisconnectMessageReceived += (obj, disconnectEvent) =>
             {
-                // _filteredStream.StopStream();
                 _filteredStream.Stop();
             };
 
-            // await _filteredStream.StartStreamMatchingAllConditionsAsync();
             await _filteredStream.StartMatchingAllConditionsAsync();
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
-            // _filteredStream.StopStream();
             _filteredStream.Stop();
             return Task.CompletedTask;
         }
